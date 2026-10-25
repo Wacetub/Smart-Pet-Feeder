@@ -1,0 +1,185 @@
+.page-container {
+  background: #f7f8fa;
+  min-height: 100vh;
+  padding: 20rpx;
+}
+
+/* 头部天气样式 */
+.header-container {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 20rpx;
+  padding: 30rpx;
+  margin-bottom: 30rpx;
+  color: white;
+}
+
+.header-1 {
+  display: flex;
+  justify-content: space-between;
+  font-size: 28rpx;
+  margin-bottom: 20rpx;
+  opacity: 0.9;
+}
+
+.header-2 {
+  display: flex;
+  justify-content: space-between;
+  font-size: 36rpx;
+  font-weight: bold;
+  margin-bottom: 15rpx;
+}
+
+.header-3 {
+  font-size: 24rpx;
+  opacity: 0.8;
+  text-align: center;
+}
+
+/* 数据容器样式 */
+.data-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20rpx;
+  margin-bottom: 30rpx;
+}
+
+/* 数据项样式 */
+.data-item {
+  background: white;
+  border-radius: 16rpx;
+  padding: 24rpx;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.05);
+}
+
+.data-picture {
+  width: 60rpx;
+  height: 60rpx;
+  margin-right: 20rpx;
+  transition: all 0.3s ease;
+}
+
+.data-picture.alert {
+  filter: hue-rotate(0deg) saturate(1.5) brightness(1.2);
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    filter: hue-rotate(0deg) saturate(1.5) brightness(1.2);
+  }
+  50% {
+    transform: scale(1.1);
+    filter: hue-rotate(0deg) saturate(2) brightness(1.3);
+  }
+  100% {
+    transform: scale(1);
+    filter: hue-rotate(0deg) saturate(1.5) brightness(1.2);
+  }
+}
+
+.data-text {
+  flex: 1;
+}
+
+.data-title {
+  font-size: 26rpx;
+  color: #666;
+  margin-bottom: 8rpx;
+}
+
+.data-value {
+  font-size: 30rpx;
+  color: #333;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.data-value.alert-text {
+  color: #fa5151;
+  animation: blink 1.5s infinite;
+}
+
+@keyframes blink {
+  0%, 50% {
+    opacity: 1;
+  }
+  51%, 100% {
+    opacity: 0.5;
+  }
+}
+
+/* 控制容器样式 */
+.control-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20rpx;
+  margin-bottom: 30rpx;
+}
+
+/* 手动控制容器样式 */
+.manual-control-container {
+  background: white;
+  border-radius: 16rpx;
+  padding: 24rpx;
+  box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.05);
+}
+
+.manual-control-container .data-item {
+  background: transparent;
+  box-shadow: none;
+  padding: 0;
+  margin-bottom: 20rpx;
+}
+
+.manual-control-container .data-item:last-child {
+  margin-bottom: 0;
+}
+
+/* 手动按钮样式 */
+.manual-buttons {
+  display: flex;
+  gap: 20rpx;
+  margin-top: 20rpx;
+}
+
+.manual-btn {
+  flex: 1;
+  background: #3d77ff;
+  color: white;
+  border: none;
+  border-radius: 12rpx;
+  padding: 20rpx;
+  font-size: 28rpx;
+  font-weight: 500;
+}
+
+.manual-btn:active {
+  opacity: 0.8;
+}
+
+.feed-btn {
+  background: #07c160;
+}
+
+.water-btn {
+  background: #1989fa;
+}
+
+/* 单位样式 */
+.unit {
+  font-size: 24rpx;
+  color: #999;
+  margin-left: 12rpx;
+}
+
+/* 开关和滑块样式 */
+switch {
+  transform: scale(0.8);
+}
+
+slider {
+  margin: 0;
+} 

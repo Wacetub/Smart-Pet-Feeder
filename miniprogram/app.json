@@ -1,0 +1,150 @@
+{
+  "darkmode": true,
+  "pages": [
+    "pages/pet-feeder/control/index",
+    "pages/pet-feeder/monitor/index",
+    "pages/pet-feeder/ai-assistant/index",
+    "pages/pet-feeder/settings/index",
+    "pages/home/home",
+    "pages/home/navigateFail/navigateFail"
+  ],
+  "subpackages": [
+    {
+      "root": "pages/side-bar/",
+      "pages": [
+        "side-bar",
+        "base/index",
+        "switch/index",
+        "custom/index",
+        "with-icon/index"
+      ]
+    },
+    {
+      "root": "pages/action-sheet/",
+      "pages": [
+        "action-sheet"
+      ]
+    },
+    {
+      "root": "pages/avatar/",
+      "pages": [
+        "avatar",
+        "skyline/avatar"
+      ]
+    },
+    {
+      "root": "pages/calendar/",
+      "pages": [
+        "calendar"
+      ]
+    },
+    {
+      "root": "pages/dialog/",
+      "pages": [
+        "dialog",
+        "skyline/dialog"
+      ]
+    },
+    {
+      "root": "pages/picker/",
+      "pages": [
+        "picker",
+        "skyline/picker"
+      ]
+    },
+    {
+      "root": "pages/rate/",
+      "pages": [
+        "rate"
+      ]
+    },
+    {
+      "root": "pages/swiper/",
+      "pages": [
+        "swiper",
+        "skyline/swiper"
+      ]
+    },
+    {
+      "root": "pages/swipe-cell/",
+      "pages": [
+        "swipe-cell"
+      ]
+    },
+    {
+      "root": "pages/tree-select/",
+      "pages": [
+        "tree-select"
+      ]
+    },
+    {
+      "root": "pages/indexes/",
+      "pages": [
+        "indexes",
+        "base/index",
+        "custom/index"
+      ]
+    }
+  ],
+  "themeLocation": "theme.json",
+  "usingComponents": {
+    "t-demo": "./components/demo-block/index",
+    "t-demo-header": "./components/demo-header/index",
+    "t-button": "tdesign-miniprogram/button/button",
+    "t-icon": "tdesign-miniprogram/icon/icon",
+    "t-navbar": "tdesign-miniprogram/navbar/navbar",
+    "agent-ui": "./miniprogram-agent-ui/miniprogram/components/agent-ui/index"
+  },
+  "window": {
+    "navigationBarTitleText": "智能宠物喂食器",
+    "navigationBarBackgroundColor": "#ffffff",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#f7f8fa"
+  },
+  "resolveAlias": {
+    "@behaviors/*": "behaviors/*"
+  },
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents",
+  "rendererOptions": {
+    "skyline": {
+      "disableABTest": true,
+      "defaultDisplayBlock": true,
+      "defaultContentBox": true,
+      "sdkVersionBegin": "3.4.3",
+      "sdkVersionEnd": "15.255.255"
+    }
+  },
+  "tabBar": {
+    "color": "#999999",
+    "selectedColor": "#07c160",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/pet-feeder/control/index",
+        "text": "控制",
+        "iconPath": "assets/icons/control.png",
+        "selectedIconPath": "assets/icons/control-active.png"
+      },
+      {
+        "pagePath": "pages/pet-feeder/monitor/index",
+        "text": "监控",
+        "iconPath": "assets/icons/monitor.png",
+        "selectedIconPath": "assets/icons/monitor-active.png"
+      },
+      {
+        "pagePath": "pages/pet-feeder/ai-assistant/index",
+        "text": "AI助手",
+        "iconPath": "assets/icons/ai.png",
+        "selectedIconPath": "assets/icons/ai-active.png"
+      },
+      {
+        "pagePath": "pages/pet-feeder/settings/index",
+        "text": "设置",
+        "iconPath": "assets/icons/settings.png",
+        "selectedIconPath": "assets/icons/settings-active.png"
+      }
+    ]
+  }
+}

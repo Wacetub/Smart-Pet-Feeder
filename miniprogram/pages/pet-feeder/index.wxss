@@ -1,0 +1,263 @@
+.container {
+  padding: 20rpx;
+  padding-top: calc(88rpx + env(safe-area-inset-top));
+  background: #f7f8fa;
+  min-height: 100vh;
+}
+
+/* 状态卡片样式 */
+.status-card {
+  background: #FFFFFF;
+  border-radius: 16rpx;
+  padding: 30rpx;
+  margin-bottom: 20rpx;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.05);
+}
+
+.status-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+
+.device-name {
+  font-size: 32rpx;
+  font-weight: 500;
+  color: #333333;
+}
+
+.connection-status {
+  font-size: 24rpx;
+  padding: 4rpx 16rpx;
+  border-radius: 20rpx;
+}
+
+.connection-status.connected {
+  background: #E8F5E9;
+  color: #4CAF50;
+}
+
+.connection-status.disconnected {
+  background: #FFEBEE;
+  color: #F44336;
+}
+
+.status-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20rpx;
+}
+
+.status-item {
+  text-align: center;
+}
+
+.status-item .label {
+  font-size: 24rpx;
+  color: #666666;
+  margin-bottom: 8rpx;
+  display: block;
+}
+
+.status-item .value {
+  font-size: 28rpx;
+  color: #333333;
+  font-weight: 500;
+}
+
+/* 物料状态样式 */
+.material-status {
+  background: #FFFFFF;
+  border-radius: 16rpx;
+  padding: 30rpx;
+  margin-bottom: 20rpx;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.05);
+}
+
+.material-item {
+  margin-bottom: 20rpx;
+}
+
+.material-item:last-child {
+  margin-bottom: 0;
+}
+
+.progress-bar {
+  height: 16rpx;
+  background: #F5F5F5;
+  border-radius: 8rpx;
+  overflow: hidden;
+  margin-bottom: 8rpx;
+}
+
+.progress {
+  height: 100%;
+  background: #4CAF50;
+  border-radius: 8rpx;
+  transition: width 0.3s ease;
+}
+
+.material-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.material-info .label {
+  font-size: 24rpx;
+  color: #666666;
+}
+
+.material-info .value {
+  font-size: 24rpx;
+  color: #333333;
+  font-weight: 500;
+}
+
+/* AI助手样式 */
+.ai-assistant {
+  background: #FFFFFF;
+  border-radius: 16rpx;
+  padding: 30rpx;
+  margin-bottom: 20rpx;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.05);
+}
+
+.assistant-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+
+.assistant-header .title {
+  font-size: 32rpx;
+  font-weight: 500;
+  color: #333333;
+}
+
+.voice-control {
+  display: flex;
+  align-items: center;
+  font-size: 24rpx;
+  color: #666666;
+}
+
+.voice-control .iconfont {
+  margin-right: 8rpx;
+  font-size: 32rpx;
+}
+
+.advice-content {
+  background: #F5F5F5;
+  border-radius: 12rpx;
+  padding: 20rpx;
+}
+
+.advice-text {
+  font-size: 28rpx;
+  color: #333333;
+  line-height: 1.5;
+  margin-bottom: 16rpx;
+  display: block;
+}
+
+.advice-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12rpx;
+}
+
+.tag {
+  font-size: 24rpx;
+  color: #4CAF50;
+  background: #E8F5E9;
+  padding: 4rpx 16rpx;
+  border-radius: 20rpx;
+}
+
+/* 快捷操作样式 */
+.quick-actions {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20rpx;
+  margin-bottom: 20rpx;
+}
+
+.action-item {
+  background: #FFFFFF;
+  border-radius: 16rpx;
+  padding: 20rpx;
+  text-align: center;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.05);
+}
+
+.action-item .iconfont {
+  font-size: 48rpx;
+  color: #4CAF50;
+  margin-bottom: 8rpx;
+  display: block;
+}
+
+.action-item text:last-child {
+  font-size: 24rpx;
+  color: #666666;
+}
+
+/* 历史记录预览样式 */
+.history-preview {
+  background: #FFFFFF;
+  border-radius: 16rpx;
+  padding: 30rpx;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.05);
+}
+
+.preview-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+
+.preview-header .title {
+  font-size: 32rpx;
+  font-weight: 500;
+  color: #333333;
+}
+
+.preview-header .more {
+  font-size: 24rpx;
+  color: #4CAF50;
+}
+
+.preview-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16rpx;
+}
+
+.preview-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16rpx;
+  background: #F5F5F5;
+  border-radius: 12rpx;
+}
+
+.preview-item .time {
+  font-size: 24rpx;
+  color: #666666;
+}
+
+.preview-item .type {
+  font-size: 24rpx;
+  color: #4CAF50;
+}
+
+.preview-item .amount {
+  font-size: 24rpx;
+  color: #333333;
+  font-weight: 500;
+} 

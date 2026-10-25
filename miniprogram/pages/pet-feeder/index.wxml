@@ -1,0 +1,104 @@
+<navigation-bar title="智能喂食器" back="{{true}}" color="black" background="#FFF"></navigation-bar>
+<view class="container">
+  <!-- 设备状态卡片 -->
+  <view class="status-card">
+    <view class="status-header">
+      <text class="device-name">{{deviceInfo.name || '智能喂食器'}}</text>
+      <view class="connection-status {{isConnected ? 'connected' : 'disconnected'}}">
+        {{isConnected ? '已连接' : '未连接'}}
+      </view>
+    </view>
+    
+    <view class="status-grid">
+      <view class="status-item">
+        <text class="label">温度</text>
+        <text class="value">{{deviceStatus.temperature}}°C</text>
+      </view>
+      <view class="status-item">
+        <text class="label">湿度</text>
+        <text class="value">{{deviceStatus.humidity}}%</text>
+      </view>
+      <view class="status-item">
+        <text class="label">振动</text>
+        <text class="value">{{deviceStatus.vibration ? '检测到活动' : '无活动'}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 物料状态 -->
+  <view class="material-status">
+    <view class="material-item">
+      <view class="progress-bar">
+        <view class="progress" style="width: {{deviceStatus.foodLevel}}"></view>
+      </view>
+      <view class="material-info">
+        <text class="label">食物余量</text>
+        <text class="value">{{deviceStatus.foodLevel}}%</text>
+      </view>
+    </view>
+    
+    <view class="material-item">
+      <view class="progress-bar">
+        <view class="progress" style="width: {{deviceStatus.waterLevel}}"></view>
+      </view>
+      <view class="material-info">
+        <text class="label">水量</text>
+        <text class="value">{{deviceStatus.waterLevel}}%</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- AI助手 -->
+  <view class="ai-assistant">
+    <view class="assistant-header">
+      <text class="title">AI助手</text>
+      <view class="voice-control" bindtap="toggleVoiceControl">
+        <text class="iconfont {{isVoiceActive ? 'icon-voice-active' : 'icon-voice'}}"></text>
+        <text>{{isVoiceActive ? '语音已开启' : '开启语音'}}</text>
+      </view>
+    </view>
+    
+    <view class="advice-content" wx:if="{{aiAdvice}}">
+      <text class="advice-text">{{aiAdvice.content}}</text>
+      <view class="advice-tags" wx:if="{{aiAdvice.tags.length > 0}}">
+        <text class="tag" wx:for="{{aiAdvice.tags}}" wx:key="index">{{item}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 快捷操作 -->
+  <view class="quick-actions">
+    <view class="action-item" bindtap="handleFeed">
+      <text class="iconfont icon-feed"></text>
+      <text>投食</text>
+    </view>
+    <view class="action-item" bindtap="handleWater">
+      <text class="iconfont icon-water"></text>
+      <text>加水</text>
+    </view>
+    <view class="action-item" bindtap="navigateToHistory">
+      <text class="iconfont icon-history"></text>
+      <text>历史记录</text>
+    </view>
+    <view class="action-item" bindtap="navigateToSettings">
+      <text class="iconfont icon-settings"></text>
+      <text>设置</text>
+    </view>
+  </view>
+
+  <!-- 历史记录预览 -->
+  <view class="history-preview">
+    <view class="preview-header">
+      <text class="title">最近记录</text>
+      <text class="more" bindtap="navigateToHistory">查看更多</text>
+    </view>
+    
+    <view class="preview-list">
+      <view class="preview-item" wx:for="{{feedHistory}}" wx:key="index" wx:if="{{index < 3}}">
+        <text class="time">{{item.time}}</text>
+        <text class="type">投食</text>
+        <text class="amount">{{item.amount}}g</text>
+      </view>
+    </view>
+  </view>
+</view> 

@@ -1,0 +1,100 @@
+<view class="container">
+  <!-- 设备状态卡片 -->
+  <view class="status-card">
+    <view class="status-header">
+      <text class="title">设备状态</text>
+      <view class="connection-status {{deviceStatus && deviceStatus.data && deviceStatus.data[0] && deviceStatus.data[0].online ? 'connected' : 'disconnected'}}">
+        {{deviceStatus && deviceStatus.data && deviceStatus.data[0] && deviceStatus.data[0].online ? '已连接' : '未连接'}}
+      </view>
+    </view>
+    
+    <view class="status-grid">
+      <view class="status-item">
+        <text class="label">温度</text>
+        <text class="value">{{deviceProperties.temp || '-'}}°C</text>
+      </view>
+      <view class="status-item">
+        <text class="label">湿度</text>
+        <text class="value">{{deviceProperties.humi || '-'}}%</text>
+      </view>
+      <view class="status-item">
+        <text class="label">水位</text>
+        <text class="value">{{deviceProperties.shuiwei || '-'}}%</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 物料状态 -->
+  <view class="material-status">
+    <view class="material-item">
+      <view class="progress-bar">
+        <view class="progress" style="width: {{foodLevel}}%"></view>
+      </view>
+      <view class="material-info">
+        <text class="label">食物余量</text>
+        <text class="value">{{foodLevel}}%</text>
+      </view>
+    </view>
+    
+    <view class="material-item">
+      <view class="progress-bar">
+        <view class="progress" style="width: {{waterLevel}}%"></view>
+      </view>
+      <view class="material-info">
+        <text class="label">水量</text>
+        <text class="value">{{waterLevel}}%</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 今日统计 -->
+  <view class="today-stats">
+    <view class="stats-title">今日统计</view>
+    <view class="stats-content">
+      <view class="stats-item">
+        <text class="stats-label">加水次数</text>
+        <text class="stats-value">{{todayStats.waterCount}}次</text>
+      </view>
+      <view class="stats-item">
+        <text class="stats-label">总加水量</text>
+        <text class="stats-value">{{todayStats.totalWater}}毫升</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 日期选择器 -->
+  <view class="date-range-picker">
+    <view class="picker-item">
+      <text>开始日期：</text>
+      <picker mode="date" value="{{dateRange.start}}" data-field="start" bindchange="onDateRangeChange">
+        <view class="picker-value">{{dateRange.start}}</view>
+      </picker>
+    </view>
+    <view class="picker-item">
+      <text>结束日期：</text>
+      <picker mode="date" value="{{dateRange.end}}" data-field="end" bindchange="onDateRangeChange">
+        <view class="picker-value">{{dateRange.end}}</view>
+      </picker>
+    </view>
+  </view>
+
+  <!-- 加水记录 -->
+  <view class="history-section">
+    <view class="section-header">
+      <text class="section-title">加水记录</text>
+      <button class="clear-btn" bindtap="clearHistory">清空记录</button>
+    </view>
+    <view class="history-list">
+      <block wx:if="{{waterHistory.length > 0}}">
+        <view class="history-item" wx:for="{{waterHistory}}" wx:key="time">
+          <view class="history-info">
+            <text class="time">{{item.time}}</text>
+            <text class="type">{{item.type === 'manual' ? '手动加水' : '自动加水'}}</text>
+          </view>
+          <text class="amount">{{item.amount}}毫升</text>
+        </view>
+      </block>
+      <view class="empty-tip" wx:else>暂无加水记录</view>
+    </view>
+  </view>
+</view> 

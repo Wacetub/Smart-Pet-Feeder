@@ -1,0 +1,216 @@
+<view class="container">
+  <!-- 设备信息 -->
+  <view class="section">
+    <view class="section-header">
+      <text class="title">设备信息</text>
+    </view>
+    <view class="section-content">
+      <view class="input-item">
+        <text class="label">设备名称</text>
+        <input 
+          class="input" 
+          value="{{settings.deviceName}}"
+          placeholder="请输入设备名称"
+          bindinput="onDeviceNameChange"
+        />
+      </view>
+      <view class="info-item">
+        <text class="label">设备ID</text>
+        <text class="value">{{deviceInfo.deviceId || 'Test'}}</text>
+      </view>
+      <view class="info-item">
+        <text class="label">连接状态</text>
+        <text class="value {{isConnected ? 'connected' : 'disconnected'}}">
+          {{isConnected ? '已连接' : '未连接'}}
+        </text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 自动投食设置 -->
+  <view class="section">
+    <view class="section-header">
+      <text class="title">自动投食</text>
+    </view>
+    <view class="section-content">
+      <view class="switch-item">
+        <text class="label">启用自动投食</text>
+        <switch 
+          checked="{{settings.autoFeed}}" 
+          bindchange="onAutoFeedChange"
+          color="#07c160"
+        />
+      </view>
+      
+      <block wx:if="{{settings.autoFeed}}">
+        <view class="feed-times">
+          <view class="feed-time-item" wx:for="{{settings.feedTimes}}" wx:key="index">
+            <picker 
+              mode="time" 
+              value="{{item.time}}"
+              bindchange="onFeedTimeChange"
+              data-index="{{index}}"
+              data-field="time"
+            >
+              <view class="time-picker">
+                <text>{{item.time}}</text>
+              </view>
+            </picker>
+            
+            <picker 
+              mode="selector" 
+              range="{{[50, 100, 150, 200]}}"
+              value="{{item.amount}}"
+              bindchange="onFeedTimeChange"
+              data-index="{{index}}"
+              data-field="amount"
+            >
+              <view class="amount-picker">
+                <text>{{item.amount}}g</text>
+              </view>
+            </picker>
+            
+            <view 
+              class="delete-btn"
+              bindtap="removeFeedTime"
+              data-index="{{index}}"
+            >
+              删除
+            </view>
+          </view>
+          
+          <view class="add-btn" bindtap="addFeedTime">
+            添加投食时间
+          </view>
+        </view>
+      </block>
+    </view>
+  </view>
+
+  <!-- 通知设置 -->
+  <view class="section">
+    <view class="section-header">
+      <text class="title">通知设置</text>
+    </view>
+    <view class="section-content">
+      <view class="switch-item">
+        <text class="label">食物不足提醒</text>
+        <switch 
+          checked="{{settings.notifications.lowFood}}" 
+          bindchange="onNotificationChange"
+          data-type="lowFood"
+          color="#07c160"
+        />
+      </view>
+      <view class="switch-item">
+        <text class="label">水量不足提醒</text>
+        <switch 
+          checked="{{settings.notifications.lowWater}}" 
+          bindchange="onNotificationChange"
+          data-type="lowWater"
+          color="#07c160"
+        />
+      </view>
+      <view class="switch-item">
+        <text class="label">设备离线提醒</text>
+        <switch 
+          checked="{{settings.notifications.deviceOffline}}" 
+          bindchange="onNotificationChange"
+          data-type="deviceOffline"
+          color="#07c160"
+        />
+      </view>
+      <view class="switch-item">
+        <text class="label">温度异常提醒</text>
+        <switch 
+          checked="{{settings.notifications.abnormalTemp}}" 
+          bindchange="onNotificationChange"
+          data-type="abnormalTemp"
+          color="#07c160"
+        />
+      </view>
+    </view>
+  </view>
+
+  <!-- 阈值设置 -->
+  <view class="section">
+    <view class="section-header">
+      <text class="title">阈值设置</text>
+    </view>
+    <view class="section-content">
+      <view class="slider-item">
+        <text class="label">食物不足阈值 ({{settings.thresholds.minFoodLevel}}g)</text>
+        <slider 
+          min="100" 
+          max="3000" 
+          value="{{settings.thresholds.minFoodLevel}}"
+          bindchange="onThresholdChange"
+          data-type="minFoodLevel"
+          show-value
+        />
+      </view>
+      <view class="slider-item">
+        <text class="label">水量不足阈值 ({{settings.thresholds.minWaterLevel}}%)</text>
+        <slider 
+          min="10" 
+          max="100" 
+          value="{{settings.thresholds.minWaterLevel}}"
+          bindchange="onThresholdChange"
+          data-type="minWaterLevel"
+          show-value
+        />
+      </view>
+      <view class="slider-item">
+        <text class="label">最高温度 ({{settings.thresholds.maxTemp}}°C)</text>
+        <slider 
+          min="20" 
+          max="40" 
+          value="{{settings.thresholds.maxTemp}}"
+          bindchange="onThresholdChange"
+          data-type="maxTemp"
+          show-value
+        />
+      </view>
+      <view class="slider-item">
+        <text class="label">最低温度 ({{settings.thresholds.minTemp}}°C)</text>
+        <slider 
+          min="0" 
+          max="20" 
+          value="{{settings.thresholds.minTemp}}"
+          bindchange="onThresholdChange"
+          data-type="minTemp"
+          show-value
+        />
+      </view>
+      <view class="slider-item">
+        <text class="label">最低湿度 ({{settings.thresholds.minHumidity}}%)</text>
+        <slider 
+          min="10" 
+          max="40" 
+          value="{{settings.thresholds.minHumidity}}"
+          bindchange="onThresholdChange"
+          data-type="minHumidity"
+          show-value
+        />
+      </view>
+      <view class="slider-item">
+        <text class="label">最高湿度 ({{settings.thresholds.maxHumidity}}%)</text>
+        <slider 
+          min="40" 
+          max="100" 
+          value="{{settings.thresholds.maxHumidity}}"
+          bindchange="onThresholdChange"
+          data-type="maxHumidity"
+          show-value
+        />
+      </view>
+    </view>
+  </view>
+
+  <!-- 重置设备 -->
+  <view class="reset-section">
+    <button class="reset-btn" bindtap="resetDevice">
+      重置设备
+    </button>
+  </view>
+</view> 

@@ -1,0 +1,146 @@
+<view class="page-container">
+  <!-- 头部天气 -->
+  <view class="header-container">
+    <view class="header-1">
+      <view>空气质量</view>
+      <view>气温</view>
+      <view>智能宠物喂养系统</view>
+    </view>
+    <view class="header-2">
+      <view>56良</view>
+      <view>{{deviceProperties.temp || 0}}℃</view>
+      <view>在线监控</view>
+    </view>
+    <view class="header-3">
+      <view>实时监控宠物喂食器状态</view>
+    </view>
+  </view>
+
+  <!-- 中间数据 -->
+  <view class="data-container">
+    <!-- 数据项：设备状态 -->
+    <view class="data-item device-status">
+      <image src="{{deviceStatus && deviceStatus.data && deviceStatus.data[0] && deviceStatus.data[0].online ? '/assets/icon-connected.png' : '/assets/icon-connected.png'}}" class="data-picture"/>
+      <view class="data-text">
+        <view class="data-title">设备状态</view>
+        <view class="data-value" wx:if="{{deviceStatus && deviceStatus.data && deviceStatus.data[0] && deviceStatus.data[0].online}}">在线</view>
+        <view class="data-value" wx:else style="color: rgb(31, 133, 5);">在线</view>
+      </view>
+    </view>
+
+    <!-- 数据项：传感器状态 -->
+    <view class="data-item sensor-status">
+      <image src="/assets/images/sensor.png" class="data-picture {{sensorAlert ? 'alert' : ''}}"/>
+      <view class="data-text">
+        <view class="data-title">传感器状态</view>
+        <view class="data-value" wx:if="{{!sensorAlert}}">正常</view>
+        <view class="data-value" wx:else style="color: red;">异常</view>
+      </view>
+    </view>
+
+    <!-- 数据项：环境温度 -->
+    <view class="data-item environment-temperature">
+      <image src="{{tempAlert ? '/assets/temp1.png' : '/assets/temp.png'}}" class="data-picture {{tempAlert ? 'alert' : ''}}"/>
+      <view class="data-text">
+        <view class="data-title">环境温度</view>
+        <view class="data-value {{tempAlert ? 'alert-text' : ''}}">{{deviceProperties.temp || 0}}℃</view>
+      </view>
+    </view>
+
+    <!-- 数据项：环境湿度 -->
+    <view class="data-item environment-humidity">
+      <image src="{{humidityAlert ? '/assets/humi1.png' : '/assets/humi.png'}}" class="data-picture {{humidityAlert ? 'alert' : ''}}"/>
+      <view class="data-text">
+        <view class="data-title">环境湿度</view>
+        <view class="data-value {{humidityAlert ? 'alert-text' : ''}}">{{deviceProperties.humi || 0}}%</view>
+      </view>
+    </view>
+
+    <!-- 数据项：水位状态 -->
+    <view class="data-item water-level">
+      <image src="{{waterAlert ? '/assets/shuiwei1.png' : '/assets/shuiwei.png'}}" class="data-picture {{waterAlert ? 'alert' : ''}}"/>
+      <view class="data-text">
+        <view class="data-title">水位状态</view>
+        <view class="data-value {{waterAlert ? 'alert-text' : ''}}">{{deviceProperties.shuiwei || 0}}%</view>
+      </view>
+    </view>
+
+    <!-- 数据项：剩余食量 -->
+    <view class="data-item food-level">
+      <image src="{{foodAlert ? '/assets/food1.png' : '/assets/food.png'}}" class="data-picture {{foodAlert ? 'alert' : ''}}"/>
+      <view class="data-text">
+        <view class="data-title">剩余食量</view>
+        <view class="data-value {{foodAlert ? 'alert-text' : ''}}">{{deviceProperties.food || 0}}g</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 控制面板 -->
+  <view class="control-container">
+    <!-- 投食控制 -->
+    <view class="data-item feed-control">
+      <image src="/assets/images/feed.png" class="data-picture"/>
+      <view class="data-text">
+        <view class="data-title">自动投食</view>
+        <view class="data-value">
+          <switch checked="{{switch1_checked}}" bindchange="onenet_set_device_property" data-param="auto_feed" color="#3d77ff"/>
+        </view>
+      </view>
+    </view>
+
+    <!-- 加水控制 -->
+    <view class="data-item water-control">
+      <image src="/assets/images/water.png" class="data-picture"/>
+      <view class="data-text">
+        <view class="data-title">自动加水</view>
+        <view class="data-value">
+          <switch checked="{{switch2_checked}}" bindchange="onenet_set_device_property" data-param="auto_water" color="#3d77ff"/>
+        </view>
+      </view>
+    </view>
+    
+    <!-- 阀门控制 -->
+    <view class="data-item valve-control">
+      <image src="/assets/images/valve.png" class="data-picture"/>
+      <view class="data-text">
+        <view class="data-title">阀门状态</view>
+        <view class="data-value">
+          <switch checked="{{switch3_checked}}" bindchange="onenet_set_device_property" data-param="gate" color="#3d77ff"/>
+        </view>
+      </view>
+    </view>
+  </view>
+  
+  <!-- 手动控制 -->
+  <view class="manual-control-container">
+    <!-- 投食量控制 -->
+    <view class="data-item feed-amount">
+      <image src="/assets/images/feed.png" class="data-picture"/>
+      <view class="data-text">
+        <view class="data-title">投食量控制</view>
+        <view class="data-value">
+          <slider min="0" max="200" step="50" value="{{feedAmount}}" bindchange="onFeedAmountChange" show-value activeColor="#3d77ff"/>
+          <text class="unit">克</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 加水量控制 -->
+    <view class="data-item water-amount">
+      <image src="/assets/images/water.png" class="data-picture"/>
+      <view class="data-text">
+        <view class="data-title">加水量控制</view>
+        <view class="data-value">
+          <slider min="50" max="500" step="10" value="{{waterAmount}}" bindchange="onWaterAmountChange" show-value activeColor="#3d77ff"/>
+          <text class="unit">毫升</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 手动操作按钮 -->
+    <view class="manual-buttons">
+      <button class="manual-btn feed-btn" bindtap="handleFeed">手动投食</button>
+      <button class="manual-btn water-btn" bindtap="handleWater">手动加水</button>
+    </view>
+  </view>
+</view>
