@@ -1,0 +1,30 @@
+# Keil 编译产物
+firmware/OBJ/
+firmware/USER/*.uvguix*
+*.o
+*.d
+*.crf
+*.axf
+*.hex
+*.lst
+*.map
+*.htm
+*.lnp
+*.dep
+*.sct
+*.build_log.htm
+
+# 小程序
+miniprogram/node_modules/
+miniprogram/miniprogram_npm/.cache/
+
+# 本地配置（真实 WiFi / OneNET 参数）
+config.local.h
+miniprogram/utils/config.local.js
+
+# 系统
+.DS_Store
+Thumbs.db
+*.zip
+*.rar
+*.mp4
